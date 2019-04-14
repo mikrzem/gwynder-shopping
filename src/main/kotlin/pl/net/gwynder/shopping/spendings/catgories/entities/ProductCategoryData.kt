@@ -1,9 +1,9 @@
 package pl.net.gwynder.shopping.spendings.catgories.entities
 
 import com.fasterxml.jackson.annotation.JsonCreator
-import pl.net.gwynder.shopping.common.BaseData
+import pl.net.gwynder.shopping.common.catalogs.BaseCatalogData
 
 class ProductCategoryData @JsonCreator constructor(
         id: Long?,
-        val name: String
-) : BaseData(id)
+        name: String
+) : BaseCatalogData(id, name)
