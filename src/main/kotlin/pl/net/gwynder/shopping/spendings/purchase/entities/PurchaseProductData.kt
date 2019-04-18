@@ -6,6 +6,6 @@ import java.math.BigDecimal
 
 class PurchaseProductData(
         val product: ProductData,
-        val amounth: Int,
+        val amount: Int,
         val price: BigDecimal
 ) : Serializable

@@ -13,4 +13,8 @@ class ErrorHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error.message)
     }
 
+    @ExceptionHandler(InvalidFormat::class)
+    fun invalidFormat(error: InvalidFormat): ResponseEntity<String> {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error.message)
+    }
 }
