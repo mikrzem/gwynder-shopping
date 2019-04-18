@@ -4,7 +4,7 @@ import pl.net.gwynder.shopping.common.catalogs.BaseCatalogEntity
 import javax.persistence.Entity
 
 @Entity
-class ProductCategory(
+class SpendingCategory(
         name: String = "",
         owner: String = ""
 ) : BaseCatalogEntity(name, owner)

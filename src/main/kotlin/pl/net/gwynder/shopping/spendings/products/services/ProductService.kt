@@ -2,14 +2,14 @@ package pl.net.gwynder.shopping.spendings.products.services
 
 import org.springframework.stereotype.Service
 import pl.net.gwynder.shopping.common.catalogs.BaseCatalogService
-import pl.net.gwynder.shopping.spendings.catgories.services.ProductCategoryService
+import pl.net.gwynder.shopping.spendings.catgories.services.SpendingCategoryService
 import pl.net.gwynder.shopping.spendings.products.entities.Product
 import pl.net.gwynder.shopping.spendings.products.entities.ProductData
 
 @Service
 class ProductService(
         repository: ProductRepository,
-        private val categoryService: ProductCategoryService
+        private val categoryService: SpendingCategoryService
 ) : BaseCatalogService<Product, ProductData>(repository) {
 
     override fun newEntity(owner: String, data: ProductData): Product {
