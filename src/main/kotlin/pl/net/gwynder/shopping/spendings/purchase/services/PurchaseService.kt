@@ -8,7 +8,7 @@ import pl.net.gwynder.shopping.common.BaseService
 import pl.net.gwynder.shopping.common.DateParser
 import pl.net.gwynder.shopping.common.database.BaseEntity_
 import pl.net.gwynder.shopping.common.errors.DataNotFound
-import pl.net.gwynder.shopping.spendings.catgories.services.SpendingCategoryService
+import pl.net.gwynder.shopping.spendings.categories.services.SpendingCategoryService
 import pl.net.gwynder.shopping.spendings.locations.services.SpendingLocationService
 import pl.net.gwynder.shopping.spendings.products.services.ProductService
 import pl.net.gwynder.shopping.spendings.purchase.entities.*
@@ -88,9 +88,9 @@ class PurchaseService(
         entity.category = categoryService.fromData(entity.owner, data.category)
         entity.location = locationService.fromData(entity.owner, data.location)
         entity.purchaseDate = dateParser.toDate(data.date)
-        entity.manualTotal = entity.manualTotal
+        entity.manualTotal = data.manualTotal
         if (entity.manualTotal) {
-            entity.total = entity.total
+            entity.total = data.total
         } else {
             entity.total = data.products.stream().map { p -> p.price }.reduce(BigDecimal.ZERO, BigDecimal::add)
         }

@@ -2,7 +2,7 @@ package pl.net.gwynder.shopping.spendings.products.services
 
 import org.springframework.stereotype.Service
 import pl.net.gwynder.shopping.common.catalogs.BaseCatalogService
-import pl.net.gwynder.shopping.spendings.catgories.services.SpendingCategoryService
+import pl.net.gwynder.shopping.spendings.categories.services.SpendingCategoryService
 import pl.net.gwynder.shopping.spendings.products.entities.Product
 import pl.net.gwynder.shopping.spendings.products.entities.ProductData
 

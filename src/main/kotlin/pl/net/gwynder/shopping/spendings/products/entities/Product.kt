@@ -1,7 +1,7 @@
 package pl.net.gwynder.shopping.spendings.products.entities
 
 import pl.net.gwynder.shopping.common.catalogs.BaseCatalogEntity
-import pl.net.gwynder.shopping.spendings.catgories.entities.SpendingCategory
+import pl.net.gwynder.shopping.spendings.categories.entities.SpendingCategory
 import javax.persistence.Entity
 import javax.persistence.FetchType
 import javax.persistence.JoinColumn

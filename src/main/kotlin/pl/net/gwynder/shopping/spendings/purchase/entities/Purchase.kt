@@ -1,7 +1,7 @@
 package pl.net.gwynder.shopping.spendings.purchase.entities
 
 import pl.net.gwynder.shopping.common.database.BaseEntity
-import pl.net.gwynder.shopping.spendings.catgories.entities.SpendingCategory
+import pl.net.gwynder.shopping.spendings.categories.entities.SpendingCategory
 import pl.net.gwynder.shopping.spendings.locations.entities.SpendingLocation
 import java.math.BigDecimal
 import java.time.LocalDate

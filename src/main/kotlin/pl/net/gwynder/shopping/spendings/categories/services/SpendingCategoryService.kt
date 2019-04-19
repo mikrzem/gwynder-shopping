@@ -1,9 +1,9 @@
-package pl.net.gwynder.shopping.spendings.catgories.services
+package pl.net.gwynder.shopping.spendings.categories.services
 
 import org.springframework.stereotype.Service
 import pl.net.gwynder.shopping.common.catalogs.BaseCatalogService
-import pl.net.gwynder.shopping.spendings.catgories.entities.SpendingCategory
-import pl.net.gwynder.shopping.spendings.catgories.entities.SpendingCategoryData
+import pl.net.gwynder.shopping.spendings.categories.entities.SpendingCategory
+import pl.net.gwynder.shopping.spendings.categories.entities.SpendingCategoryData
 
 @Service
 class SpendingCategoryService(
@@ -13,6 +13,11 @@ class SpendingCategoryService(
 ) {
     override fun newEntity(owner: String, data: SpendingCategoryData): SpendingCategory {
         return SpendingCategory(
+                if (data.parent == null) {
+                    null
+                } else {
+                    fromData(owner, data.parent)
+                },
                 data.name,
                 owner
         )
@@ -26,6 +31,11 @@ class SpendingCategoryService(
     override fun toData(entity: SpendingCategory): SpendingCategoryData {
         return SpendingCategoryData(
                 entity.id,
+                if (entity.parent == null) {
+                    null
+                } else {
+                    toData(entity.parent!!)
+                },
                 entity.name
         )
     }
