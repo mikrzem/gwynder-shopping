@@ -1,6 +1,8 @@
 package pl.net.gwynder.shopping.spendings.purchase.entities
 
 import pl.net.gwynder.shopping.common.database.BaseEntity
+import pl.net.gwynder.shopping.common.database.VALUE_PRECISION
+import pl.net.gwynder.shopping.common.database.VALUE_SCALE
 import pl.net.gwynder.shopping.spendings.categories.entities.SpendingCategory
 import pl.net.gwynder.shopping.spendings.locations.entities.SpendingLocation
 import java.math.BigDecimal
