@@ -16,7 +16,7 @@ class ProductController(
         service: ProductService
 ) : BaseCatalogController<Product, ProductData>(service) {
 
-    @GetMapping("/")
+    @GetMapping
     fun select(
             @RequestParam("category", required = false) category: Optional<Long>
     ): List<ProductData> {

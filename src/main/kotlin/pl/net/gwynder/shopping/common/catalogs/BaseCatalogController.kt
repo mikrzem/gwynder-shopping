@@ -14,7 +14,7 @@ abstract class BaseCatalogController<Entity : BaseCatalogEntity, Data : BaseCata
         )
     }
 
-    @PostMapping("/")
+    @PostMapping
     fun create(@RequestBody data: Data): Data {
         return service.toData(
                 service.create(ownerProvider.owner(), data)

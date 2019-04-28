@@ -14,7 +14,7 @@ class SpendingLocationController(
         service: SpendingLocationService
 ) : BaseCatalogController<SpendingLocation, SpendingLocationData>(service) {
 
-    @GetMapping("/")
+    @GetMapping
     fun select(): List<SpendingLocationData> {
         return service.select(ownerProvider.owner()).map(service::toData)
     }

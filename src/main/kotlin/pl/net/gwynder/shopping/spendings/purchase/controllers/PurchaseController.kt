@@ -13,7 +13,7 @@ class PurchaseController(
         private val dateParser: DateParser
 ) : BaseController() {
 
-    @GetMapping("/")
+    @GetMapping
     fun select(
             @RequestParam("dateFrom") dateFrom: String,
             @RequestParam("dateTo") dateTo: String
@@ -41,7 +41,7 @@ class PurchaseController(
         )
     }
 
-    @PostMapping("/")
+    @PostMapping
     fun create(
             @RequestBody data: PurchaseData
     ): PurchaseData {
