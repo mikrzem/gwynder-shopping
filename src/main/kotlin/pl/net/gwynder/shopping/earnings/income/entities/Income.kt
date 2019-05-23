@@ -16,5 +16,6 @@ class Income(
         @Column(nullable = false)
         var incomeDate: LocalDate = LocalDate.now(),
         @Column(nullable = false, scale = VALUE_SCALE, precision = VALUE_PRECISION)
-        var income: BigDecimal = BigDecimal.ZERO
-) : BaseEntity()
+        var income: BigDecimal = BigDecimal.ZERO,
+        owner: String = ""
+) : BaseEntity(owner)

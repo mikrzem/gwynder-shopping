@@ -52,7 +52,8 @@ class IncomeService(
         val income = Income(
                 sourceService.fromData(owner, data.source),
                 dateParser.toDate(data.date),
-                data.income
+                data.income,
+                owner
         )
         return repository.save(income)
     }
