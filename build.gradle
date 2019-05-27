@@ -45,3 +45,7 @@ compileTestKotlin {
     }
 }
 
+bootJar {
+    archiveFileName = 'gwynder-shopping.jar'
+}
+
