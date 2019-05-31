@@ -49,3 +49,7 @@ bootJar {
     archiveFileName = 'gwynder-shopping.jar'
 }
 
+springBoot {
+    buildInfo()
+}
+
