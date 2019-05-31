@@ -27,7 +27,8 @@ class PurchaseService(
         private val productService: ProductService,
         private val locationService: SpendingLocationService,
         private val categoryService: SpendingCategoryService,
-        private val dateParser: DateParser
+        private val dateParser: DateParser,
+        private val changeListeners: List<PurchaseListener>
 ) : BaseService() {
 
     fun selectLatest(owner: String): List<Purchase> {
@@ -97,16 +98,43 @@ class PurchaseService(
     }
 
     private fun createPurchaseProducts(purchase: Purchase, data: PurchaseData) {
+        notifyProductRemoval(purchase)
         productRepository.deleteByPurchase(purchase)
-        for (productData in data.products) {
-            productRepository.save(
-                    PurchaseProduct(
-                            purchase,
-                            productService.fromData(purchase.owner, productData.product),
-                            productData.amount,
-                            productData.price
+        val saved = data.products
+                .map { productData ->
+                    productRepository.save(
+                            PurchaseProduct(
+                                    purchase,
+                                    productService.fromData(purchase.owner, productData.product),
+                                    productData.amount,
+                                    productData.price
+                            )
                     )
+                }
+        notifyProductAdded(purchase, saved)
+    }
+
+    private fun notifyProductAdded(purchase: Purchase, products: List<PurchaseProduct>) {
+        products.forEach { product ->
+            val change = PurchaseChange(
+                    purchase.owner,
+                    product.product,
+                    product.amount,
+                    product.price
             )
+            changeListeners.forEach { listener -> listener.onPurchaseChange(change) }
+        }
+    }
+
+    private fun notifyProductRemoval(purchase: Purchase) {
+        productRepository.findByPurchase(purchase).forEach { product ->
+            val change = PurchaseChange(
+                    purchase.owner,
+                    product.product,
+                    -product.amount,
+                    product.price
+            )
+            changeListeners.forEach { listener -> listener.onPurchaseChange(change) }
         }
     }
 
@@ -115,8 +143,10 @@ class PurchaseService(
                 .orElseThrow { DataNotFound("purchase", id) }
     }
 
+    @Transactional
     fun delete(owner: String, id: Long) {
         val purchase = get(owner, id)
+        notifyProductRemoval(purchase)
         repository.delete(purchase)
     }
 

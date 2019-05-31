@@ -17,4 +17,9 @@ class ErrorHandler {
     fun invalidFormat(error: InvalidFormat): ResponseEntity<String> {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error.message)
     }
+
+    @ExceptionHandler(InvalidStructure::class)
+    fun invalidStructure(error: InvalidStructure): ResponseEntity<String> {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error.message)
+    }
 }
